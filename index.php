@@ -22,7 +22,7 @@
                             <?php echo htmlspecialchars($_GET['error_message']); ?>
                         </div>
                         <?php endif; ?>
-                        <form method="POST" action="config/logueo.php" role="form">
+                        <form method="POST" action="config/login.php" role="form">
                             <div class="form-group">
                                 <label for="usNombre">Nombre de Usuario</label>
                                 <input type="text" class="form-control" id="usNombre" name="usNombre" required>
