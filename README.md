@@ -11,3 +11,5 @@
   - Añadida correctamente y funcional
 - Creacion de vista principal
   - Navbar Añadida con menus para admin y capturistas
+  - Tabla de expedientes añadida
+  - vista individual de cada expediente añadido
