@@ -1,16 +1,13 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION['usNombre'])) {
-    echo `<script>
-    alert("No existe sesion")</script>`;
+    echo '<script>alert("No existe sesión");</script>';
     header('location: index.php');
     session_destroy();
     die();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -41,6 +38,5 @@ if (!isset($_SESSION['usNombre'])) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 
 </html>

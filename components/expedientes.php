@@ -13,8 +13,9 @@ $query = "SELECT expedientes.id, expedientes.Apellido1, expedientes.Apellido2, e
 $result = mysqli_query($con, $query);
 ?>
 
-<table class="table table-hover">
-    <thead>
+
+<table class="table table-hover table-bordered">
+    <thead class="thead-dark">
         <tr>
             <th><a href="?sort=Apellido1&order=<?php echo ($sort_column == 'Apellido1' && $sort_order == 'ASC') ? 'DESC' : 'ASC'; ?>">Apellido
                     Paterno</a>

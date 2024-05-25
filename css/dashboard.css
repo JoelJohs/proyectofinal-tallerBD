@@ -1,11 +1,52 @@
 body {
   background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
 }
 
-main {
+.container {
+  margin-top: 50px;
+}
+
+.card {
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
   padding: 20px;
 }
 
-h1 {
-  margin-bottom: 20px;
+h1.text-center {
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table th a {
+  color: #212529;
+  text-decoration: none;
+}
+
+.table th a:hover {
+  color: #0056b3;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: #ffffff;
 }

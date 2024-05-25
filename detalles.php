@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require "config/conexion.php";
 
 // Verificar si se proporcionó un ID válido en la URL
@@ -40,6 +42,7 @@ mysqli_close($con);
 </head>
 
 <body>
+    <?php require "components/nav.php"; ?>
     <div class="container">
         <?php if (isset($error_message)) : ?>
             <div class="alert alert-danger">
