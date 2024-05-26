@@ -1,11 +1,9 @@
 <?php
 require "config/conexion.php";
 
-// Definir la columna por defecto para ordenar
 $sort_column = isset($_GET['sort']) ? $_GET['sort'] : 'Apellido1';
 $sort_order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
 
-// Consulta SQL con el orden especificado
 $query = "SELECT expedientes.id, expedientes.Apellido1, expedientes.Apellido2, expedientes.Nombre, licenciatura.LicCorto 
           FROM expedientes
           INNER JOIN licenciatura ON expedientes.Licenciatura = licenciatura.idLic

@@ -7,6 +7,9 @@ if (!isset($_SESSION['usNombre'])) {
     session_destroy();
     die();
 }
+
+// Capturar el mensaje de éxito
+$success_message = isset($_GET['success_message']) ? $_GET['success_message'] : '';
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +29,15 @@ if (!isset($_SESSION['usNombre'])) {
 
     <main class="container">
         <h1 class="text-center">Expedientes</h1>
+        <!-- Mostrar mensaje de éxito -->
+        <?php if ($success_message) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?php echo htmlspecialchars($success_message); ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif; ?>
         <div class="card">
             <div class="card-body">
                 <?php require 'components/expedientes.php'; ?>

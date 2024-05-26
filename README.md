@@ -13,3 +13,6 @@
   - Navbar Añadida con menus para admin y capturistas
   - Tabla de expedientes añadida
   - vista individual de cada expediente añadido
+- CRUD Usuarios y Expedientes casi completado, no se logro hacer funcionar el Editar
+- Se elimino usuario admin original para usar los nuevos con contraseñas cifradas con SHA1
+- Se inserto la base de datos con los usuarios nuevos

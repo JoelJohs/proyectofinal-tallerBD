@@ -9,30 +9,27 @@ if (!empty($_POST['usNombre']) && !empty($_POST['password'])) {
     $pass_sha1 = sha1($password);
 
     // Consulta a la base de datos
-    $query = "SELECT COUNT(*) AS contar FROM usuarios WHERE usNombre = '$usuario' AND password = '$password'";
+    $query = "SELECT idUsuario, rol FROM usuarios WHERE usNombre = '$usuario' AND password = '$pass_sha1'";
     $consulta = mysqli_query($con, $query);
-    $array = mysqli_fetch_array($consulta);
+    $array = mysqli_fetch_assoc($consulta);
 
-    if ($array['contar'] > 0) {
-        // consultar rol de usuario
-        $query = "SELECT rol FROM usuarios WHERE usNombre = '$usuario'";
-        $consulta = mysqli_query($con, $query);
-        $row = mysqli_fetch_assoc($consulta);
-        $rol = $row['rol'];
+    if ($array) {
+        // Almacenar el ID del usuario en la sesión
+        $_SESSION['idUsuario'] = $array['idUsuario'];
 
-        // Asignacion de nombre a la variable de rol
-        if ($rol == 1) {
+        // Asignación del rol
+        if ($array['rol'] == 1) {
             $_SESSION['rol'] = 'admin';
         } else {
             $_SESSION['rol'] = 'capturista';
         }
 
-        // Asignacion de variables de sesion
+        // Asignación del nombre de usuario en la sesión
         $_SESSION['usNombre'] = $usuario;
         header("location: ../dashboard.php");
         exit;
     } else {
-        $error_message = "Usuario incorrecto";
+        $error_message = "Usuario o contraseña incorrectos";
         header("Location: ../index.php?error_message=" . urlencode($error_message));
         exit;
     }
