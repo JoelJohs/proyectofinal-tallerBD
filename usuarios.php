@@ -99,7 +99,7 @@ mysqli_close($con);
         <script>
         function confirmarEliminar(usuarioId) {
             if (confirm('¿Estás seguro de eliminar este usuario?')) {
-                window.location.href = 'eliminar_usuario.php?id=' + usuarioId;
+                window.location.href = 'utils/eliminarusuario.php?id=' + usuarioId;
             }
         }
         </script>

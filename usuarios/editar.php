@@ -3,29 +3,31 @@ session_start();
 
 require "../config/conexion.php";
 
+// Verificar si el usuario está autenticado y es un administrador
 if (!isset($_SESSION['usNombre']) || $_SESSION['rol'] !== 'admin') {
     header("Location: index.php");
     exit;
 }
 
+// Verificar si se ha proporcionado un ID de usuario para editar
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $usuario_id = $_GET['id'];
 
+    // Obtener los datos del usuario de la base de datos
     $query = "SELECT * FROM usuarios WHERE idUsuario = $usuario_id";
     $result = mysqli_query($con, $query);
 
-    if ($result) {
+    if ($result && mysqli_num_rows($result) > 0) {
         $usuario = mysqli_fetch_assoc($result);
     } else {
         $error_message = "Error al obtener los datos del usuario.";
     }
 } else {
-
     header("Location: ../usuarios.php");
     exit;
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($usuario_id)) {
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $nombreUsuario = $_POST['nombreUsuario'];
@@ -53,16 +55,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Crear Usuario</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/usuariosfolder.css">
-
 </head>
 
 <body>
-    <?php require "../components/nav.php" ?>
+    <?php require "../components/nav.php"; ?>
 
     <div class="container">
         <h1>Editar Usuario</h1>
 
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?id=" . $usuario_id; ?>">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" class="form-control"
@@ -87,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" class="form-control" required>
             </div>
-
             <button type="submit" class="btn btn-primary">Editar Usuario</button>
         </form>
 
@@ -96,9 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php echo $error_message; ?>
         </div>
         <?php endif; ?>
-
     </div>
-
 </body>
 
 </html>
